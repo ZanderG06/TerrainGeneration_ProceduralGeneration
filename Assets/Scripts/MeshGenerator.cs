@@ -11,6 +11,8 @@ public class MeshGenerator : MonoBehaviour
 
     [SerializeField] int xSize;
     [SerializeField] int zSize;
+    [SerializeField] float minHeight;
+    [SerializeField] float maxHeight;
 
     private void Start()
     {
@@ -33,7 +35,7 @@ public class MeshGenerator : MonoBehaviour
         {
             for(int x = 0; x <= xSize; x++)
             {
-                float y = Mathf.PerlinNoise(x * .3f, z * .3f) * 2f;
+                float y = Mathf.PerlinNoise(x * .3f, z * .3f) * Random.Range(minHeight, maxHeight);
                 vertices[i] = new Vector3(x, y, z);
                 i++;
             }
@@ -58,7 +60,7 @@ public class MeshGenerator : MonoBehaviour
                 vert++;
                 tris += 6;
 
-                yield return new WaitForSeconds(.01f);
+                yield return new WaitForSeconds(.005f);
             }
             vert++;
         }
