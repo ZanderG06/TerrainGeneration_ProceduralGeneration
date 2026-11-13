@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MeshGenerator : MonoBehaviour
 {
@@ -80,6 +81,14 @@ public class MeshGenerator : MonoBehaviour
         for (int i = 0; i < vertices.Length; i++)
         {
             Gizmos.DrawSphere(vertices[i], .1f);
+        }
+    }
+
+    public void OnSpaceBar(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            StartCoroutine(CreateShape());
         }
     }
 }
